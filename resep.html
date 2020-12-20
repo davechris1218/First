@@ -1,10 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+      <style type="text/css">
+        .container {
+            margin-top: 30px;
+        }
+        .dropdown-toggle,
+        .dropdown-menu {
+            border-radius: 0px !important;
+        }
+        .dropdown-item:hover {
+            color: white;
+        }
+        .btn-danger {
+            width: 55%;
+        }
+        .dropdown:hover>.dropdown-menu {
+          display: block;
+        }
+    </style>
         <meta charset="utf-8" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Resep Masakan Sehari-Hari</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">    
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-light fixed-top bg-warning">
@@ -181,6 +200,24 @@
         <main role="main">
           <div class="jumbotron">
             <div class="container">
+              <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active" data-interval="2000">
+                    <a href="#tempe"><img src="https://selerasa.com/wp-content/uploads/2020/10/Resep-masakan-sehari-hari-1-300x300.jpg" class="d-block w-100" width="500px" height="500px"></a>
+                  </div>
+                  <div class="carousel-item" data-interval="2000">
+                    <a href="#telor"><img src="https://selerasa.com/wp-content/uploads/2020/10/Resep-masakan-sehari-hari-2.jpg" class="d-block w-100" width="500px" height="500px"></a>
+                  </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
               <div class="col-md-8">
               <h3>Resep Masakan Sehari-Hari Mudah dan Praktis yang Wajib Anda Coba</h3>
               <p><strong>Resep Masakan Sehari-Hari</strong> – Menentukan menu makan untuk pagi, siang, malam atau bahkan keesokan harinya terkadang membuat banyak ibu kebingungan. Padahal ada banyak ide resep masakan sehari-hari yang bisa dibuat. Atau anda bisa berkreasi menggunakan bahan yang ada dengan bumbu yang berbeda.</p>
@@ -226,94 +263,119 @@
               <img src="https://selerasa.com/wp-content/uploads/2020/10/Resep-masakan-sehari-hari-1-300x300.jpg">
             </div>
             <div class="col-md-6">
-              <h6>Bahan-Bahan</h6>
-              <p>Resep dan Cara Membuat Tempe Mendoan Daun Kunyit yang Nikmat</p>
-              <ul>
-                <li class="li">300 gram tempe</li>
-                <li class="li">2 batang daun kunyit</li>
-                <li class="li">25 gram tepung beras</li>
-                <li class="li">450 ml air</li>
-                <li class="li">1 sdt kunyit bubuk</li>
-                <li class="li">35 gram tepung sagu</li>
-                <li class="li">Minyak goreng secukupnya</li>
-              </ul>
+              <h6 id="tempe">Bahan-Bahan</h6>
+                <p>Resep dan Cara Membuat Tempe Mendoan Daun Kunyit yang Nikmat</p>
+                  <div id="li1">
+                    <ul>
+                      <li>300 gram tempe</li>
+                      <li>2 batang daun kunyit</li>
+                      <li>25 gram tepung beras</li>
+                      <li>450 ml air</li>
+                      <li>1 sdt kunyit bubuk</li>
+                      <li>35 gram tepung sagu</li>
+                      <li>Minyak goreng secukupnya</li>
+                    </ul>
+                  </div>
+              <input type='button' id='btn1' value="Show/Hide">
               <p>Bumbu yang Dihaluskan</p>
-              <ul>
-                <li class="li">2 butir kemiri sangrai</li>
-                <li class="li">2 cm kencur</li>
-                <li class="li">1/4 sdt merica</li>
-                <li class="li">1 sdt garam</li>
-                <li class="li">2 siung bawang putih</li>
-                <li class="li">1/4 sdt gula pasir</li>
-                <li class="li">1/2 sdt ketumbar</li>
-              </ul>
+                <div id="li2">
+                  <ul>
+                    <li>2 butir kemiri sangrai</li>
+                    <li>2 cm kencur</li>
+                    <li>1/4 sdt merica</li>
+                    <li>1 sdt garam</li>
+                    <li>2 siung bawang putih</li>
+                    <li>1/4 sdt gula pasir</li>
+                    <li>1/2 sdt ketumbar</li>
+                  </ul>
+                </div>
+              <input type='button' id='btn2' value="Show/Hide">
               <h6>Langkah-Langkah</h6>
               <p>Cara Menyiapkan Bahan-Bahan yang Dibutuhkan</p>
-              <ol>
-                <li class="li">Pertama-tama, ambil tempe yang sudah anda sediakan. Lalu silakan tempe dipotong tipis dengan lebar 6x10 cm.</p>
-                <li class="li">Setelah itu, iris daun kunyit. Sisihkan.</li>
-                <li class="li">Kemudian haluskan semua bumbu halus yang sudah anda sediakan seperti di atas.</li>
-              </ol>
+                <div id="li3">
+                  <ol>
+                    <li>Pertama-tama, ambil tempe yang sudah anda sediakan. Lalu silakan tempe dipotong tipis dengan lebar 6x10 cm.</p>
+                    <li>Setelah itu, iris daun kunyit. Sisihkan.</li>
+                    <li>Kemudian haluskan semua bumbu halus yang sudah anda sediakan seperti di atas.</li>
+                  </ol>
+                </div>
+              <input type='button' id='btn3' value="Show/Hide">  
               <p>Cara Membuat Tempe Mendoan Daun Kunyit</p>
-              <ol>
-                <li class="li">Jika semua bahan sudah siap, sekarang anda bisa langsung membuat olahan tempe mendoan daun kunyit. Silakan ambil wadah dan masukan bumbu halus beserta bahan-bahan lainnya seperti tepung terigu, daun kunyit, tepung beras, kunyit bubuk, tepung sagu dan air. Aduk semua bahan-bahan tersebut hingga tercampur merata.</li>
-                <li class="li">Selanjutnya, ambil tempe yang sudah anda potong-potong. Lalu celupkan ke dalam adonan tepung.</li>
-                <li class="li">Siapkan wajan dan tuangkan minyak dalam jumlah yang cukup banyak untuk menggoreng. Panaskan minyak tersebut.</li>
-                <li class="li">Setelah minyak panas, silakan goreng tempe hingga setengah matang.</li>
-                <li class="li">Jika sudah seperti itu, anda bisa mengangkat dan meniriskannya. Goreng lagi hingga tempe dan adonan habis.</li>
-              </ol>
+                <div id="li4">
+                  <ol>
+                    <li>Jika semua bahan sudah siap, sekarang anda bisa langsung membuat olahan tempe mendoan daun kunyit. Silakan ambil wadah dan masukan bumbu halus beserta bahan-bahan lainnya seperti tepung terigu, daun kunyit, tepung beras, kunyit bubuk, tepung sagu dan air. Aduk semua bahan-bahan tersebut hingga tercampur merata.</li>
+                    <li>Selanjutnya, ambil tempe yang sudah anda potong-potong. Lalu celupkan ke dalam adonan tepung.</li>
+                    <li>Siapkan wajan dan tuangkan minyak dalam jumlah yang cukup banyak untuk menggoreng. Panaskan minyak tersebut.</li>
+                    <li>Setelah minyak panas, silakan goreng tempe hingga setengah matang.</li>
+                    <li>Jika sudah seperti itu, anda bisa mengangkat dan meniriskannya. Goreng lagi hingga tempe dan adonan habis.</li>
+                  </ol>
+                </div>
+              <input type='button' id='btn4' value="Show/Hide">
               <br>
               <p>Sajian tempe mendoan sudah selesai dibuat. Nikmati selagi hangat dengan tambahan sambal agar lebih lezat. Anda juga bisa menikmatinya sebagai teman makan nasi.</p>
-              <h3>RESEP DAN CARA MEMBUAT TUMIS TELUR DADAR CABAI HIJAU YANG LEZAT</h3>
+              <h3 id="telor">RESEP DAN CARA MEMBUAT TUMIS TELUR DADAR CABAI HIJAU YANG LEZAT</h3>
               <img src="https://selerasa.com/wp-content/uploads/2020/10/Resep-masakan-sehari-hari-2.jpg">
               <p>BAHAN UNTUK MEMBUAT TELUR DADAR</p>
-              <ul>
-                <li class="li">3 butir telur</li>
-                <li class="li">1/4 sdt merica bubuk</li>
-                <li class="li">2 sdm tepung terigu protein sedang</li>
-                <li class="li">1 batang daun bawang</li>
-                <li class="li">1/2 sdt garam</li>
-                <li class="li">1 sdm air</li>
-              </ul>
+                <div id="li5">
+                  <ul>
+                    <li>1/4 sdt merica bubuk</li>
+                    <li>2 sdm tepung terigu protein sedang</li>
+                    <li>1 batang daun bawang</li>
+                    <li>1/2 sdt garam</li>
+                    <li>1 sdm air</li>
+                    <li>3 butir telur</li>
+                  </ul>
+                </div>
+              <input type='button' id='btn5' value="Show/Hide">
               <p>BUMBU YANG DIHALUSKAN</p>
-              <ul>
-                <li class="li">2 siung bawang putih</li>
-                <li class="li">1 buah tomat hijau</li>
-                <li class="li">5 butir bawang merah</li>
-                <li class="li">1 cm lengkuas</li>
-              </ul>
+                <div id="li6">
+                  <ul>
+                    <li>2 siung bawang putih</li>
+                    <li>1 buah tomat hijau</li>
+                    <li>5 butir bawang merah</li>
+                    <li>1 cm lengkuas</li>
+                  </ul>
+                </div>
+              <input type='button' id='btn6' value="Show/Hide">
               <p>BAHAN UNTUK TUMISAN</p>
-              <ul>
-                <li class="li">3 lembar daun jeruk</li>
-                <li class="li">10 buah petai</li>
-                <li class="li">5 buah cabai hijau</li>
-                <li class="li">1/2 sdt garam</li>
-                <li class="li">1 lembar daun salam</li>
-                <li class="li">1/2 sdt gula pasir</li>
-                <li class="li">100 ml santan yang diambil dari 1/4 butir kelapa</li>
-                <li class="li">Minyak goreng secukupnya</li>
-                <li class="li">1 batang serai</li>
-              </ul>
+                <div id="li7">
+                  <ul>
+                    <li>3 lembar daun jeruk</li>
+                    <li>10 buah petai</li>
+                    <li>5 buah cabai hijau</li>
+                    <li>1/2 sdt garam</li>
+                    <li>1 lembar daun salam</li>
+                    <li>1/2 sdt gula pasir</li>
+                    <li>100 ml santan yang diambil dari 1/4 butir kelapa</li>
+                    <li>Minyak goreng secukupnya</li>
+                    <li>1 batang serai</li>
+                  </ul>
+                </div>
+              <input type='button' id='btn7' value="Show/Hide">
               <p>CARA MENYIAPKAN BAHAN-BAHAN</p>
-              <ol>
-                <li class="li">Pertama-tama, iris halus terlebih dahulu daun bawang untuk bahan telur dadar.</li>
-                <li class="li">Kemudian potong bulat cabai hijau dengan ketebalan 1 cm.</li>
-                <li class="li">Setelah itu, buang tulang daun jeruk. Untuk serai, silakan ambil bagian putihnya dan iris-iris.</li>
-                <li class="li">Selanjutnya belah menjadi dua bagian petai. Lalu haluskan semua bumbu halus yang sudah anda  sediakan.</li>
-              </ol>
+                <div id="li8">
+                  <ol>
+                    <li>Pertama-tama, iris halus terlebih dahulu daun bawang untuk bahan telur dadar.</li>
+                    <li>Kemudian potong bulat cabai hijau dengan ketebalan 1 cm.</li>
+                    <li>Setelah itu, buang tulang daun jeruk. Untuk serai, silakan ambil bagian putihnya dan iris-iris.</li>
+                    <li>Selanjutnya belah menjadi dua bagian petai. Lalu haluskan semua bumbu halus yang sudah anda  sediakan.</li>
+                  </ol>
+                </div>
+              <input type='button' id='btn8' value="Show/Hide">  
               <p>CARA MEMBUAT TUMIS TELUR DADAR CABAI HIJAU</p>
-              <ol>
-                <li class="li">Siapkan mangkuk, lalu masukan telur ke dalam mangkuk bersama dengan bahan-bahan yang lainnya. Aduk-aduk hingga tercampur merata.</li>
-                <li class="li">Setelah itu, silakan panaskan minyak goreng. Lalu buat telur dadar dengan ketebalan 1 cm. Jika sudah matang, anda bisa memotongnya dengan ukuran 3×2 cm. Lalu sisihkan terlebih dahulu.</li>
-                <li class="li">Kemudian, panaskan lagi minyak goreng sekitar 2 hingga 3 sendok makan. Silakan tuangkan bumbu yang dihaluskan bersama dengan daun jeruk, daun salam, cabai hijau dan serai. Aduk-aduk merata hingga tercium aroma wangi.</li>
-                <li class="li">Selanjutnya, tambahkan petai yang sudah anda belah. Aduk-aduk hingga petai menjadi layu.</li>
-                <li class="li">Langkah berikutnya silakan masukan telur dadar yang sudah dipotong-potong. Aduk kembali hingga merata.</li>
-                <li class="li">Tambahkan santan bersama bumbu lainnya seperti gula dan garam. Aduk merata dan masak hingga kuahnya menjadi kental.</li>
-                <li class="li">Setelah semua bahan matang, bumbu meresap dan kuahnya menjadi kental, anda bisa mengangkat dan menyajikannya pada tempat saji.</li>
-              </ol>
+                <div id="li9">
+                  <ol>
+                    <li>Siapkan mangkuk, lalu masukan telur ke dalam mangkuk bersama dengan bahan-bahan yang lainnya. Aduk-aduk hingga tercampur merata.</li>
+                    <li>Setelah itu, silakan panaskan minyak goreng. Lalu buat telur dadar dengan ketebalan 1 cm. Jika sudah matang, anda bisa memotongnya dengan ukuran 3×2 cm. Lalu sisihkan terlebih dahulu.</li>
+                    <li>Kemudian, panaskan lagi minyak goreng sekitar 2 hingga 3 sendok makan. Silakan tuangkan bumbu yang dihaluskan bersama dengan daun jeruk, daun salam, cabai hijau dan serai. Aduk-aduk merata hingga tercium aroma wangi.</li>
+                    <li>Selanjutnya, tambahkan petai yang sudah anda belah. Aduk-aduk hingga petai menjadi layu.</li>
+                    <li>Langkah berikutnya silakan masukan telur dadar yang sudah dipotong-potong. Aduk kembali hingga merata.</li>
+                    <li>Tambahkan santan bersama bumbu lainnya seperti gula dan garam. Aduk merata dan masak hingga kuahnya menjadi kental.</li>
+                    <li>Setelah semua bahan matang, bumbu meresap dan kuahnya menjadi kental, anda bisa mengangkat dan menyajikannya pada tempat saji.</li>
+                  </ol>
+                </div>  
+              <input type='button' id='btn9' value="Show/Hide">
               <p>Tumis telur dadar cabai hijau telah selesai dibuat. Agar lebih nikmat, anda bisa menyantap hidangan ini dengan nasi panas saat masih hangat.</p>
-              <button class="btn1">Fade In</button>
-              <button class="btn2">Fade Out</button>
             </div>
             </div>
           </div>
@@ -325,15 +387,40 @@
         <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/popper.min.js"></script>
         <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
         <script>
             $(document).ready(function(){
-              $(".btn1").click(function(){
-                  $(".li").fadeOut();
+              $('#btn1').on('click', function(e){
+                  $("#li1").toggle('show');   
               });
-              $(".btn2").click(function(){
-                  $(".li").fadeIn();
+              $('#btn2').on('click', function(e){
+                  $("#li2").toggle('show');   
               });
-            });
+              $('#btn3').on('click', function(e){
+                  $("#li3").toggle('show');   
+              });
+              $('#btn4').on('click', function(e){
+                  $("#li4").toggle('show');   
+              });
+              $('#btn5').on('click', function(e){
+                  $("#li5").toggle('show');   
+              });
+              $('#btn6').on('click', function(e){
+                  $("#li6").toggle('show');   
+              });
+              $('#btn7').on('click', function(e){
+                  $("#li7").toggle('show');   
+              });
+              $('#btn8').on('click', function(e){
+                  $("#li8").toggle('show');   
+              });
+              $('#btn9').on('click', function(e){
+                  $("#li9").toggle('show');   
+              });
+            });    
         </script>
       </body>  
-    </html> # Second
+    </html>
