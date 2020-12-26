@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #button {
+            width: 185px;
+            background-color: darkblue;
+            color: white;
+        }
+        #container {
+            width: 250px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #bg-color-cyan {
+            background-color: #00FFFF;
+        }
+    </style>
+    <script>
+        var check = function() {
+            if (document.getElementById('password').value ==
+                document.getElementById('confirm_password').value) {
+                document.getElementById('message1').style.color = 'green';
+                document.getElementById('message1').innerHTML = 'Password match';
+            } else {
+                document.getElementById('message1').style.color = 'red';
+                document.getElementById('message1').innerHTML = 'Password did not match';
+            }
+            if (document.getElementById('user').value.length < 3) {
+                document.getElementById('message2').style.color = 'red';
+                document.getElementById('message2').innerHTML = 'Username must be at least 3 characters';
+            } else {
+                document.getElementById('message2').style.color = 'green';
+                document.getElementById('message2').innerHTML = 'OK!';
+            }
+            if (document.getElementById('email').value.length > 20) {
+                document.getElementById('message3').style.color = 'red';
+                document.getElementById('message3').innerHTML = 'Email must not longer than 20 characters';
+            } else {
+                document.getElementById('message3').style.color = 'green';
+                document.getElementById('message3').innerHTML = 'OK!';
+            }
+        }
+        function myFunction(){
+            alert("Thank You For Registering!");
+        }
+    </script>
+</head>
+<body id="bg-color-cyan">
+    <div id="container">
+        <form>
+            <label>Username
+                <br>
+                <input type="text" name="user" id="user" onkeyup='check();' /> 
+                <br>
+                <span id='message2'></span>
+            </label>
+            <br>
+            <label>Email
+                <br>
+                <input type="text" name="email" maxlength="21" id="email" onkeyup='check()' />
+                <br>
+                <span id="message3"></span>
+            </label>
+            <br>
+            <label>Password
+                <br>
+                <input name="password" id="password" type="password" onkeyup='check();' />
+                <br>
+            </label>
+            <br>
+            <label>Confirm Password
+                <br>
+                <input type="password" name="confirm_password" id="confirm_password"  onkeyup='check();' />
+                <br>
+                <span id='message1'></span>
+                <br>
+            </label>
+            <button onclick="myFunction()" id="button">Register</button>
+        </form>    
+    </div>        
+</body>
+</html>
