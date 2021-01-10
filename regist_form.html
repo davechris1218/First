@@ -36,9 +36,9 @@
                 document.getElementById('message2').style.color = 'green';
                 document.getElementById('message2').innerHTML = 'OK!';
             }
-            if (document.getElementById('email').value.length > 20) {
+            if (document.getElementById('email').value.length < 1) {
                 document.getElementById('message3').style.color = 'red';
-                document.getElementById('message3').innerHTML = 'Email must not longer than 20 characters';
+                document.getElementById('message3').innerHTML = 'Please input your email address';
             } else {
                 document.getElementById('message3').style.color = 'green';
                 document.getElementById('message3').innerHTML = 'OK!';
@@ -61,7 +61,7 @@
             <br>
             <label>Email
                 <br>
-                <input type="text" name="email" maxlength="21" id="email" onkeyup='check()' />
+                <input type="text" name="email" id="email" onkeyup='check()' />
                 <br>
                 <span id="message3"></span>
             </label>
