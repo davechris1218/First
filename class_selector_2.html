@@ -24,10 +24,10 @@
                     <div class="col-lg-12">
                         <div id="inputFormRow">
                             <div class="input-group mb-3">
-                                <input type="text" name="title[]" class="form-control m-input" placeholder="Enter title"
+                                <input type="text" name="title[]" class="form-control m-input" id="txtVal" placeholder="Enter title"
                                     autocomplete="off">
                                 <div class="input-group-append">
-                                    <button id="removeRow" type="button" class="btn btn-danger">Delete</button>
+                                    <button id="removeRow" type="button" class="btn btn-danger removeLi">Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -35,10 +35,8 @@
                 </div>
             </div>
             <div>
-                <button type="button" class="btn btn-info result" onclick="appendText()">Result</button>
-                <ul id="demo">
-                    <li></li>
-                </ul>
+                <button type="button" class="btn btn-info result" onclick="addLi()">Result</button>
+                <ul id="list"></ul>
             </div>
         </form>
     </div>
@@ -56,21 +54,26 @@
 
             $('#newRow').append(html);
         });
-
+        
         $(document).on('click', '#removeRow', function () {
             $(this).closest('#inputFormRow').remove();
         });
 
-        function appendText() {
-            var x = $("input:text").val();
+        function addLi() {
+            var txtVal = document.getElementById('txtVal').value,
+                listNode = document.getElementById('list'),
+                liNode = document.createElement("li"),
+                txtNode = document.createTextNode(txtVal);
 
-            document.getElementById("demo").innerHTML = x;
-            x.innerHTML = "<li></li>"
-
-            $("li").append(x)
+                liNode.appendChild(txtNode);
+                listNode.appendChild(liNode);
         }
-        console.log(x);
-    </script>   
+
+        $(".removeLi").click(function(){
+            $("#list").remove();
+        })
+        
+    </script>
 </body>
 
 </html>
