@@ -46,9 +46,9 @@
             var html = '';
             html += '<div id="inputFormRow">';
             html += '<div class="input-group mb-3">';
-            html += '<input type="text" name="title[]" class="form-control m-input" placeholder="Enter title" autocomplete="off">';
+            html += '<input type="text" name="title[]" class="form-control m-input" id="txtVal" placeholder="Enter title" autocomplete="off">';
             html += '<div class="input-group-append">';
-            html += '<button id="removeRow" type="button" class="btn btn-danger">Delete</button>';
+            html += '<button id="removeRow" type="button" class="btn btn-danger removeLi">Delete</button>';
             html += '</div>';
             html += '</div>';
 
@@ -67,7 +67,18 @@
 
                 liNode.appendChild(txtNode);
                 listNode.appendChild(liNode);
+            
         }
+        
+        var myArray = [];
+            function loop() {
+                var txtVal = document.getElementById('txtVal').value;
+                var i;
+                for (i = 0; i < txtVal.length; i++) {
+                    console.log(myArray[i]);
+                }
+                
+            }
 
         $(".removeLi").click(function(){
             $("#list").remove();
