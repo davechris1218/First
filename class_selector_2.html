@@ -1,89 +1,101 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>add/remove fields</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .remove_field {
+            position: relative;
+            background-color: red;
+            border: none;
+            font-size: 15px;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            border-radius: 5px;
+        }
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+        .add_fields_button {
+            position: relative;
+            background-color: green;
+            border: none;
+            font-size: 15px;
+            color: white;
+            padding: 5px 10px;
+            width: 70px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .result_button {
+            position: relative;
+            background-color: teal;
+            border: none;
+            font-size: 15px;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            border-radius: 5px;
+        }
+    </style>
+    <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 </head>
 
 <body>
-    <div class="container" style="max-width: 1000px;">
-
-        <form>
-
-            <div>
-                <button id="addRow" type="button" class="btn btn-info" style="background-color:green">Add +</button>
+    <div class="container">
+        <div class="input_fields_wrap">
+            <button class="add_fields_button">Add +</button>
+            <div class="clonedInput">
+                <input class="m-input" id="data_item" type="text" name="myText" style="width: 1000px"><button
+                    class="remove_field removeLi">Remove</button>
             </div>
-
-            <div id="newRow">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div id="inputFormRow">
-                            <div class="input-group mb-3">
-                                <input type="text" name="title[]" class="form-control m-input" id="txtVal" placeholder="Enter title"
-                                    autocomplete="off">
-                                <div class="input-group-append">
-                                    <button id="removeRow" type="button" class="btn btn-danger removeLi">Delete</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button type="button" class="btn btn-info result" onclick="addLi()">Result</button>
-                <ul id="list"></ul>
-            </div>
-        </form>
+        </div>
+        </br>
+        <div>
+            <input type="button" onclick="appendText()" value="Result" class="result_button">
+        </div>
+        <div>
+            <ul id="list"></ul>
+        </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            var max_fields = 20
+            var wrapper = $(".input_fields_wrap");
+            var add_button = $(".add_fields_button");
 
-    <script type="text/javascript">
-        $("#addRow").click(function () {
-            var html = '';
-            html += '<div id="inputFormRow">';
-            html += '<div class="input-group mb-3">';
-            html += '<input type="text" name="title[]" class="form-control m-input" id="txtVal" placeholder="Enter title" autocomplete="off">';
-            html += '<div class="input-group-append">';
-            html += '<button id="removeRow" type="button" class="btn btn-danger removeLi">Delete</button>';
-            html += '</div>';
-            html += '</div>';
-
-            $('#newRow').append(html);
-        });
-        
-        $(document).on('click', '#removeRow', function () {
-            $(this).closest('#inputFormRow').remove();
-        });
-
-        function addLi() {
-            var txtVal = document.getElementById('txtVal').value,
-                listNode = document.getElementById('list'),
-                liNode = document.createElement("li"),
-                txtNode = document.createTextNode(txtVal);
-
-                liNode.appendChild(txtNode);
-                listNode.appendChild(liNode);
-            
-        }
-        
-        var myArray = [];
-            function loop() {
-                var txtVal = document.getElementById('txtVal').value;
-                var i;
-                for (i = 0; i < txtVal.length; i++) {
-                    console.log(myArray[i]);
+            var x = 1;
+            $(add_button).click(function (e) {
+                e.preventDefault();
+                if (x <= max_fields) {
+                    x++;
+                    $(wrapper).append('<div class="clonedInput"><input class="m-input" id="data_item' + x++ + '"  type="text" name="myText" style="width: 1000px"><a href="#" class="remove_field">Remove</a></div>');
                 }
-                
-            }
+            });
 
-        $(".removeLi").click(function(){
+            $(wrapper).on("click", ".remove_field", function (e) {
+                e.preventDefault(); $(this).parent('div').remove(); x--;
+            });
+
+        });
+
+        function appendText() {
+            var input = document.getElementById('data_item').value;
+            var list = document.getElementById('list');
+            var liNode = document.createElement("li");
+            var txtNode = document.createTextNode(input);
+
+            liNode.appendChild(txtNode);
+            list.appendChild(liNode);
+        }
+
+        $(".removeLi").click(function () {
             $("#list").remove();
         })
-        
+
     </script>
 </body>
 
