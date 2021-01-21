@@ -55,9 +55,9 @@
         </div>
         </br>
         <div>
-            <input type="button" onclick="appendText()" value="Result" class="result_button">
+            <button type="button" onclick="appendText(), addInput() " value="Result" class="result_button">Result</button>
         </div>
-        <div>
+        <div class="trigger">
             <ul id="list"></ul>
         </div>
     </div>
@@ -94,7 +94,31 @@
 
         $(".removeLi").click(function () {
             $("#list").remove();
+            $(this).attr("#List")
         })
+
+        //tolong cek code di bawah karena tidak bisa ketemu
+
+        $('.result_button').click(function(){
+            var getClass = document.getElementsByClassName('m-input');
+            var getId = $(this).attr('id');
+        
+            function addInput() {
+                var inputText = [];
+                fieldValue = document.getElementById('data_item').value;
+                inputText.push(fieldValue);
+                console.log(inputText);
+                return false;
+
+                
+                var txt = inputText;
+                var i;
+                for (i = 0; i < inputText.length; i++) {
+                    txt += "<ul><li>" + inputText[i] + "</li></ul>";
+                }
+                document.getElementById('list').innerHTML = txt;
+            }
+        });
 
     </script>
 </body>
