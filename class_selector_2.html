@@ -55,10 +55,9 @@
         </div>
         </br>
         <div>
-            <button type="button" onclick="appendText(), addInput() " value="Result" class="result_button">Result</button>
+            <button type="button" value="Result" class="result_button">Result</button>
         </div>
         <div class="trigger">
-            <ul id="list"></ul>
         </div>
     </div>
     <script>
@@ -77,47 +76,44 @@
             });
 
             $(wrapper).on("click", ".remove_field", function (e) {
-                e.preventDefault(); $(this).parent('div').remove(); x--;
+                e.preventDefault();
+                 $(this).parent('div').remove();
+                  x--;
+                  $('.result_button').trigger('click');
             });
 
         });
 
-        function appendText() {
-            var input = document.getElementById('data_item').value;
-            var list = document.getElementById('list');
-            var liNode = document.createElement("li");
-            var txtNode = document.createTextNode(input);
+        // function appendText() {
+        //     var input = document.getElementById('data_item').value;
+        //     var list = document.getElementById('list');
+        //     var liNode = document.createElement("li");
+        //     var txtNode = document.createTextNode(input);
 
-            liNode.appendChild(txtNode);
-            list.appendChild(liNode);
-        }
+        //     liNode.appendChild(txtNode);
+        //     list.appendChild(liNode);
+        // }
 
-        $(".removeLi").click(function () {
-            $("#list").remove();
-            $(this).attr("#List")
-        })
-
-        //tolong cek code di bawah karena tidak bisa ketemu
+        // $(".removeLi").click(function () {
+        //     var id = $(this).attr("id");
+        //     $("#" + id).remove();
+        // })
 
         $('.result_button').click(function(){
-            var getClass = document.getElementsByClassName('m-input');
-            var getId = $(this).attr('id');
-        
-            function addInput() {
-                var inputText = [];
-                fieldValue = document.getElementById('data_item').value;
-                inputText.push(fieldValue);
-                console.log(inputText);
-                return false;
+           var input = $(".m-input");
+           
+           var list = "<ul>";
+            
+           for (let index = 0; index < $(input).length ; index++) {
+               const element = $(input)[index];
 
-                
-                var txt = inputText;
-                var i;
-                for (i = 0; i < inputText.length; i++) {
-                    txt += "<ul><li>" + inputText[i] + "</li></ul>";
-                }
-                document.getElementById('list').innerHTML = txt;
-            }
+               if($(element).val().length > 0) {
+               list += "<li>" + $(element).val() + "</li>";
+               }
+           }
+           list += "</ul>";
+           $(".trigger").html(list);
+           
         });
 
     </script>
