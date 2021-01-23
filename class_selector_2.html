@@ -77,9 +77,9 @@
 
             $(wrapper).on("click", ".remove_field", function (e) {
                 e.preventDefault();
-                 $(this).parent('div').remove();
-                  x--;
-                  $('.result_button').trigger('click');
+                $(this).parent('div').remove();
+                x--;
+                $('.result_button').trigger('click');
             });
 
         });
@@ -97,23 +97,23 @@
         // $(".removeLi").click(function () {
         //     var id = $(this).attr("id");
         //     $("#" + id).remove();
-        // })
+        // })   
 
-        $('.result_button').click(function(){
-           var input = $(".m-input");
-           
-           var list = "<ul>";
-            
-           for (let index = 0; index < $(input).length ; index++) {
-               const element = $(input)[index];
+        $('.result_button').click(function () {
+            var input = $(".m-input");
 
-               if($(element).val().length > 0) {
-               list += "<li>" + $(element).val() + "</li>";
-               }
-           }
-           list += "</ul>";
-           $(".trigger").html(list);
-           
+            var list = "<ul>";
+
+            for (let index = 0; index < $(input).length; index++) {
+                const element = $(input)[index];
+
+                if ($(element).val().length > 0) {
+                    list += "<li>" + $(element).val() + "</li>";
+                }
+            }
+            list += "</ul>";
+            $(".trigger").html(list);
+
         });
 
     </script>
