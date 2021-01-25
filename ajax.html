@@ -33,8 +33,14 @@
                     success: function (result) {
                         $.each(result, function(index, item){
                             var userId = item.userId;
+                            var typeId = item.id;
+                            var titleId = item.title;
                             var bodyId = item.body;
-                            var $info = $("<p/>").text("User Id: " + userId + " , " + " Body: " + bodyId);
+                            var $info = $("<p/>").html("user id: " + userId + "<br>"
+                            + "id: " + typeId + "<br>"
+                            + "title: " + titleId + "<br>"
+                            + "body: " + bodyId);
+                            
                             $("div.card-body").append($info);
                         });
                         // console.log('success', result);
