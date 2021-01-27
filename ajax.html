@@ -19,11 +19,12 @@
             <div class="card-header">
                 Testing AJAX
             </div>
-            <div class="card2">
-                <div id="card-body">
+            <div class="card-body">
+                <p class="card-text"></p>
                 </div>
             </div>
         </div>
+    </div>    
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -38,22 +39,22 @@
                             var typeId = item.id;
                             var titleId = item.title;
                             var bodyId = item.body;
-                            var $info = $("<p/>").html("user id: " + userId + "<br>"
+                            var $info = $("<p>").html("user id: " + userId + "<br>"
                                 + "id: " + typeId + "<br>"
                                 + "title: " + titleId + "<br>"
                                 + "body: " + bodyId);
 
-                            var html = '<div id="card-body>';
+                            var html = '<div class="card-body>';
 
                             for (let i = 0; i < $(result).length; i++) {
                                 const element = $(result)[i];
                             }
 
-                                html += '</div>';
+                            html += '</div>';
 
-                                $(".card2").append(html);
+                            $(".card-body").append(html);
 
-                            $("div#card-body").append($info);
+                            $(".card-text").append($info);
                         });
                         // console.log('success', result);
                         // console.log(result[0].body);
