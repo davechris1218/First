@@ -20,49 +20,53 @@
                 Testing AJAX
             </div>
             <div class="card-body">
-                <p class="card-text"></p>
-                </div>
             </div>
         </div>
-    </div>    
+    </div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
 
-            $(function () {
-                $.ajax({
-                    url: "https://jsonplaceholder.typicode.com/posts",
-                    success: function (result) {
-                        $.each(result, function (index, item) {
-                            var userId = item.userId;
-                            var typeId = item.id;
-                            var titleId = item.title;
-                            var bodyId = item.body;
-                            var $info = $("<p>").html("user id: " + userId + "<br>"
-                                + "id: " + typeId + "<br>"
-                                + "title: " + titleId + "<br>"
-                                + "body: " + bodyId);
-
-                            var html = '<div class="card-body>';
-
-                            for (let i = 0; i < $(result).length; i++) {
-                                const element = $(result)[i];
-                            }
-
-                            html += '</div>';
-
-                            $(".card-body").append(html);
-
-                            $(".card-text").append($info);
-                        });
-                        // console.log('success', result);
-                        // console.log(result[0].body);
-                        // console.log($(result).length);
-                    }
-                });
+        $(function () {
+            $.ajax({
+                url: "https://jsonplaceholder.typicode.com/posts",
+                success: function (result) {
+                    var container = $(".card-body");
+                    var pool = {};
+                    $.each(result, function (index, item) {
+                        var userId = item.userId;
+                        var group = pool[userId]
+                        if (!group) {
+                            pool[userId] = []
+                            group = pool[userId]
+                        }
+                        group.push(item)
+                    });
+                    console.log(pool)
+                    $.each(pool, function (index, item) {
+                        var el = $('<div class="card-body-' + index + '">')
+                        $.each(item, function (idxInArray, doc) {
+                            var userId = doc.userId;
+                            var typeId = doc.id;
+                            var titleId = doc.title;
+                            var bodyId = doc.body;
+                            var $info = $('<div>').html(
+                                "user id: " + userId + "<br>" +
+                                "id: " + typeId + "<br>" +
+                                "title: " + titleId + "<br>" +
+                                "body: " + bodyId
+                            );
+                            el.append($info);
+                            console.log($info);
+                        })
+                        container.append(el);
+                    });
+                }
             });
-        </script>
+        });
+
+    </script>
 </body>
 
 </html>
