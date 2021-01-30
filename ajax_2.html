@@ -15,37 +15,45 @@
 
 <body>
     <div class="container">
-        <div class="card">
-             
+        <div class="card bg-light border-dark mb-3" style="max-width: 70rem;">       
+            <div class="card-header"></div>
+            <div class="card-body">               
+                <h5 class="card-title"></h5>                
+                <p class="card-text"></p>
             </div>
         </div>
+    </div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script>
-            $(function () {
-                $.ajax({
-                    url: "https://jsonplaceholder.typicode.com/posts",
-                    success: function (result) {
-                        $.each(result, function (index, item) {
-                            var userId = item.userId;
-                            var typeId = item.id;
-                            var titleId = item.title;
-                            var bodyId = item.body;
-                            var $info = $("<br><div class='card'><br>").html("user id: " + userId + "<br>"
-                                + "id: " + typeId + "<br>"
-                                + "title: " + titleId + "<br>"
-                                + "body: " + bodyId);
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(function () {
+            $(".card:first").hide()
+            $.ajax({
+                url: "https://jsonplaceholder.typicode.com/posts",
+                success: function (result) {
+                    $.each(result, function (index, item) {
+                        var cards = $(".card:first").clone()
+                        var container = $(".container")
+                        var userId = item.userId;
+                        var typeId = item.id;
+                        var titleId = item.title;
+                        var bodyId = item.body;
 
-                            $(".container").append($info);
-                        });
-                        // console.log('success', result);
-                        // console.log(result[0].body);
-                        // console.log($(result).length);
-                    }
-                });
+                        $(cards).find(".card-header").html("userId: " + userId + " - " + "id: " + typeId);
+                        $(cards).find(".card-title").html(titleId);
+                        $(cards).find(".card-text").html(bodyId);
+                        $(cards).show()
+                        $(cards).appendTo(container)
+
+                    });
+                    // console.log('success', result);
+                    // console.log(result[0].body);
+                    // console.log($(result).length);
+                }
             });
-        </script>
+        });
+    </script>
 </body>
 
 </html>
