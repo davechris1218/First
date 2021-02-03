@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Menu</title>
+
+    <style>
+        .dropdown-menu,
+        .dropdown-toggle {
+            width: 520px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="container-fluid text-center">
+            <h2 style="font-size:70px; font-family:Lucida Console;">MENU</h2>
+            <div class="row">
+                <div class="col-md-6 dropdown show">
+                    <button type="button" class="btn btn-info btn-block dropdown-toggle" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-hashpopup="true" aria-expanded="false">Foods</button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item"></a>
+                    </div>
+                </div>
+                <div class="col-md-6 dropdown show">
+                    <button type="button" class="btn btn-info btn-block dropdown-toggle" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-hashpopup="true" aria-expanded="false">Drinks</button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var json = {
+            "Food": [
+                {
+                    "id": "1",
+                    "name": "Fried Rice",
+                    "price": "10.000"
+                },
+                {
+                    "id": "2",
+                    "name": "Fried Noodle",
+                    "price": "9.000"
+                }
+            ],
+            "Drink": [
+                {
+                    "id": "1",
+                    "name": "Cola",
+                    "price": "5.000"
+                },
+                {
+                    "id": "2",
+                    "name": "Orange Juice",
+                    "price": "7.000"
+                }
+            ]
+        };
+    </script>
+</body>
+
+</html>
