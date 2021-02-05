@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -16,76 +16,100 @@
     <div class="container">
         <div class="container-fluid text-center">
             <h2 style="font-size:70px; font-family:Lucida Console;">MENU</h2>
+            <br />
             <div class="row">
                 <div class="col-md-6">
-                    <select class="form-select form-select-lg mb-3 food" aria-label=".form-select-lg example">
-                        <option selected>Open Food Menu</option>
+                    <select class="form-select form-select-lg mb-3" id="category_select" onChange='handleChange()'>
+                        <option value="Food">Food</option>
+                        <option value="Drink">Drink</option>
                     </select>
                 </div>
+                <br />
                 <div class="col-md-6">
-                    <select class="form-select form-select-lg mb-3 drink" aria-label=".form-select-lg example">
-                        <option selected>Open Drink Menu</option>
-                    </select>
+                    <select class="form-select form-select-lg mb-3" id="type_select"></select>
                 </div>
             </div>
         </div>
     </div>
+    <br />
+    <button type="button" style="width:50%; margin-left:25%; margin-right:25%">Order</button>
     <div class="result"></div>
 
     <script>
         var data = {
-            "Food": [
+            Food: [
                 {
-                    "id": "1",
-                    "name": "Fried Rice",
-                    "price": "10.000"
+                    id: 1,
+                    name: 'Fried Rice',
+                    price: '10.000'
                 },
                 {
-                    "id": "2",
-                    "name": "Fried Noodle",
-                    "price": "9.000"
+                    id: 2,
+                    name: 'Fried Noodle',
+                    price: '9.000'
                 },
                 {
-                    "id": "3",
-                    "name": "Pancake",
-                    "price": "8.500"
+                    id: 3,
+                    name: 'Pancake',
+                    price: '8.500'
                 },
                 {
-                    "id": "4",
-                    "name": "French Fries",
-                    "price": "7.500"
+                    id: 4,
+                    name: 'French Fries',
+                    price: '7.500'
                 }
             ],
-            "Drink": [
+            Drink: [
                 {
-                    "id": "1",
-                    "name": "Cola",
-                    "price": "4.600"
+                    id: 1,
+                    name: 'Cola',
+                    price: '4.600'
                 },
                 {
-                    "id": "2",
-                    "name": "Orange Juice",
-                    "price": "5.400"
+                    id: 2,
+                    name: 'Orange Juice',
+                    price: '5.400'
                 },
                 {
-                    "id": "3",
-                    "name": "Mineral Water",
-                    "price": "3.500"
+                    id: 3,
+                    name: 'Mineral Water',
+                    price: '3.500'
                 },
                 {
-                    "id": "4",
-                    "name": "Coffee",
-                    "price": "5.800"
+                    id: 4,
+                    name: 'Coffee',
+                    price: '5.800'
                 }
-
             ]
-        };
+        }
 
-        var foodOptions = data.Food.map(o => `<option value="${o.id}">${o.name}</option>`);
-        $('select.food').append(foodOptions);
+        function handleChange() {
+            var x = document.getElementById("category_select").value;
 
-        var drinkOptions = data.Drink.map(o => `<option value="${o.id}">${o.name}</option>`);
-        $('select.drink').append(drinkOptions);
+            var dataOptions = data[x]
+            var dataSelect = document.getElementById('type_select')
+            dataSelect.innerHTML = ''
+
+            dataOptions.forEach(function (option) {
+                var optionEle = document.createElement('option')
+                optionEle.value = option.id
+                optionEle.label = option.name
+
+                dataSelect.appendChild(optionEle)
+            })
+
+        }
+        handleChange()
+
+        $(document).ready(function () {
+            $("button").click(function () {
+                var selectMenu = [];
+                $.each($("#type_select"), function () {
+                    selectMenu.push($(this)).val();
+                });
+                $(".result").html(selectMenu);
+            });
+        });
 
     </script>
 </body>
