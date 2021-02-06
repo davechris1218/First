@@ -9,6 +9,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        button {
+            width: 50%;
+            margin-left: 25%;
+            margin-right: 25%;
+        }
+    </style>
     <title>Menu</title>
 </head>
 
@@ -16,7 +24,7 @@
     <div class="container">
         <div class="container-fluid text-center">
             <h2 style="font-size:70px; font-family:Lucida Console;">MENU</h2>
-            <br />
+            <br>
             <div class="row">
                 <div class="col-md-6">
                     <select class="form-select form-select-lg mb-3" id="category_select" onChange='handleChange()'>
@@ -24,16 +32,18 @@
                         <option value="Drink">Drink</option>
                     </select>
                 </div>
-                <br />
+                <br>
                 <div class="col-md-6">
                     <select class="form-select form-select-lg mb-3" id="type_select"></select>
                 </div>
             </div>
         </div>
     </div>
-    <br />
-    <button type="button" style="width:50%; margin-left:25%; margin-right:25%">Order</button>
-    <div class="result"></div>
+    <br>
+    <button type="button" class="btn btn-secondary">Order</button>
+    <br>
+    <br>
+    <div class="result text-center"></div>
 
     <script>
         var data = {
@@ -102,14 +112,13 @@
         handleChange()
 
         $(document).ready(function () {
+            var selectMenu = [];
             $("button").click(function () {
-                var selectMenu = [];
-                $.each($("#type_select"), function () {
-                    selectMenu.push($(this)).val();
-                });
-                $(".result").html(selectMenu);
+                selectMenu.push($("#type_select option:selected").attr('label'));
+                $(".result").html(selectMenu.join('<br>'));
             });
         });
+
 
     </script>
 </body>
