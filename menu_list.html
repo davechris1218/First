@@ -40,7 +40,7 @@
         </div>
     </div>
     <br>
-    <button type="button" class="btn btn-secondary">Order</button>
+    <button type="submit" class="btn btn-secondary">Order</button>
     <br>
     <br>
     <div class="result text-center"></div>
@@ -51,44 +51,44 @@
                 {
                     id: 1,
                     name: 'Fried Rice',
-                    price: '10.000'
+                    price: 10000
                 },
                 {
                     id: 2,
                     name: 'Fried Noodle',
-                    price: '9.000'
+                    price: 9000
                 },
                 {
                     id: 3,
                     name: 'Pancake',
-                    price: '8.500'
+                    price: 8500
                 },
                 {
                     id: 4,
                     name: 'French Fries',
-                    price: '7.500'
+                    price: 7500
                 }
             ],
             Drink: [
                 {
                     id: 1,
                     name: 'Cola',
-                    price: '4.600'
+                    price: 4600
                 },
                 {
                     id: 2,
                     name: 'Orange Juice',
-                    price: '5.400'
+                    price: 5400
                 },
                 {
                     id: 3,
                     name: 'Mineral Water',
-                    price: '3.500'
+                    price: 3500
                 },
                 {
                     id: 4,
                     name: 'Coffee',
-                    price: '5.800'
+                    price: 5800
                 }
             ]
         }
@@ -104,6 +104,7 @@
                 var optionEle = document.createElement('option')
                 optionEle.value = option.id
                 optionEle.label = option.name
+                optionEle.setAttribute('data-price', option.price)
 
                 dataSelect.appendChild(optionEle)
             })
@@ -114,11 +115,10 @@
         $(document).ready(function () {
             var selectMenu = [];
             $("button").click(function () {
-                selectMenu.push($("#type_select option:selected").attr('label'));
+                selectMenu.push($("#type_select option:selected").attr('label') + " : Rp " + $("#type_select option:selected").data('price'));
                 $(".result").html(selectMenu.join('<br>'));
             });
         });
-
 
     </script>
 </body>
