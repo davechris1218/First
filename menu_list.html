@@ -113,10 +113,18 @@
         handleChange()
 
         $(document).ready(function () {
-            var selectMenu = [];
+            var selectMenu = {};
             $("button").click(function () {
-                selectMenu.push($("#type_select option:selected").attr('label') + " : Rp " + $("#type_select option:selected").data('price'));
-                $(".result").html(selectMenu.join('<br>'));
+                var itemName = $("#type_select option:selected").attr('label');
+                var price = Number($("#type_select option:selected").data('price'));
+                if (selectMenu.hasOwnProperty(itemName)) {
+                    selectMenu[itemName] += price;
+                } else {
+                    selectMenu[itemName] = price;
+                }
+                var result = JSON.stringify(selectMenu).replace(",", '<br>').replace("{", "").replace("}", "");
+
+                $(".result").html(result);
             });
         });
 
