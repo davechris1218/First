@@ -122,7 +122,7 @@
                 } else {
                     selectMenu[itemName] = price;
                 }
-                var result = JSON.stringify(selectMenu).replace(",", '<br>').replace("{", "").replace("}", "");
+                var result =JSON.stringify(selectMenu).replace(/,/g,'<br>').replace(/\{|\}|"/g,"")
 
                 $(".result").html(result);
             });
