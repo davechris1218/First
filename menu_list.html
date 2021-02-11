@@ -9,6 +9,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link type="text/css" rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <style>
         button {
@@ -26,15 +28,18 @@
             <h2 style="font-size:70px; font-family:Lucida Console;">MENU</h2>
             <br>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <select class="form-select form-select-lg mb-3" id="category_select" onChange='handleChange()'>
                         <option value="Food">Food</option>
                         <option value="Drink">Drink</option>
                     </select>
                 </div>
                 <br>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <select class="form-select form-select-lg mb-3" id="type_select"></select>
+                </div>
+                <div class="col-md-4">
+                    <input type="number" class="form-control form-control-lg mb-3" id="num">
                 </div>
             </div>
         </div>
@@ -115,14 +120,8 @@
         $(document).ready(function () {
             var selectMenu = {};
             $("button").click(function () {
-                var itemName = $("#type_select option:selected").attr('label');
-                var price = Number($("#type_select option:selected").data('price'));
-                if (selectMenu.hasOwnProperty(itemName)) {
-                    selectMenu[itemName] += price;
-                } else {
-                    selectMenu[itemName] = price;
-                }
-                var result =JSON.stringify(selectMenu).replace(/,/g,'<br>').replace(/\{|\}|"/g,"")
+                var quantity = document.getElementById('num')
+                var price = $("#type_select option:selected").data('price');
 
                 $(".result").html(result);
             });
