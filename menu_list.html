@@ -39,7 +39,7 @@
                     <select class="form-select form-select-lg mb-3" id="type_select"></select>
                 </div>
                 <div class="col-md-4">
-                    <input type="number" class="form-control form-control-lg mb-3" id="num">
+                    <input type="number" class="form-control form-control-lg mb-3" id="num" placeholder="Qty" min="0">
                 </div>
             </div>
         </div>
@@ -120,8 +120,12 @@
         $(document).ready(function () {
             var selectMenu = {};
             $("button").click(function () {
-                var quantity = document.getElementById('num')
-                var price = $("#type_select option:selected").data('price');
+                var itemName = $("#type_select option:selected").attr('label');
+                var price = Number($("#type_select option:selected").data('price'));
+                var count = Number($("#num").val());
+                var total = price * count;
+                selectMenu[itemName] = total
+                var result = JSON.stringify(selectMenu).replace(/,/g, '<br>').replace(/\{|\}|"/g, "")
 
                 $(".result").html(result);
             });
