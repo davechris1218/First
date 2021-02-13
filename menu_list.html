@@ -127,6 +127,38 @@
         }
         handleChange()
 
+        $(".addRow").click(function () {
+            var x = 1;
+            var html = '';
+            html += '<div class="row">';
+            html += '<div class="col-md-3">';
+            html += '<button type="button" class="btn btn-danger btn-lg delRow">Del</button>';
+            html += '</div>';
+            html += '<div class="col-md-3">';
+            html += '<select class="form-select form-select-lg mb-3" id="category_select" onChange="handleChange()">';
+            html += '<option value="Food">Food</option>';
+            html += '<option value="Drink">Drink</option>';
+            html += '</select>';
+            html += '</div>';
+            html += '<br>';
+            html += '<div class="col-md-3">';
+            html += '<select class="form-select form-select-lg mb-3" id="type_select"></select>';
+            html += '</div>';
+            html += '<div class="col-md-3">';
+            html += '<input type="number" class="form-control form-control-lg mb-3" id="num" placeholder="Qty" min="0">';
+            html += '</div>';
+            html += '</div>';
+
+            if (x < html.length) {
+                x++;
+            }
+            $('.container-fluid').append(html);
+        });
+
+        $(document).on('click', '.delRow', function () {
+            $(this).closest('.row').remove();
+        });
+
         $(document).ready(function () {
             var selectMenu = {};
             $(".order").click(function () {
@@ -138,39 +170,6 @@
                 var result = JSON.stringify(selectMenu).replace(/,/g, '<br>').replace(/\{|\}|"/g, "")
 
                 $(".result").html(result);
-            });
-
-
-            $(".addRow").click(function () {
-                var x = 1;
-                var html = '';
-                html += '<div class="row">';
-                html += '<div class="col-md-3">';
-                html += '<button type="button" class="btn btn-danger btn-lg delRow">Del</button>';
-                html += '</div>';
-                html += '<div class="col-md-3">';
-                html += '<select class="form-select form-select-lg mb-3" id="category_select" onChange="handleChange()">';
-                html += '<option value="Food">Food</option>';
-                html += '<option value="Drink">Drink</option>';
-                html += '</select>';
-                html += '</div>';
-                html += '<br>';
-                html += '<div class="col-md-3">';
-                html += '<select class="form-select form-select-lg mb-3" id="type_select"></select>';
-                html += '</div>';
-                html += '<div class="col-md-3">';
-                html += '<input type="number" class="form-control form-control-lg mb-3" id="num" placeholder="Qty" min="0">';
-                html += '</div>';
-                html += '</div>';
-
-                if (x < html.length) {
-                    x++;
-                }
-                $('.container-fluid').append(html);
-            });
-
-            $(document).on('click', '.delRow', function () {
-                $(this).closest('.row').remove();
             });
 
         });
