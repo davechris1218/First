@@ -13,7 +13,14 @@
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <style>
-        button {
+        button[type=submit] {
+            width: 50%;
+            margin-left: 25%;
+            margin-right: 25%;
+        }
+
+        button[type=button] {
+            font-size: 20px;
             width: 50%;
             margin-left: 25%;
             margin-right: 25%;
@@ -28,24 +35,27 @@
             <h2 style="font-size:70px; font-family:Lucida Console;">MENU</h2>
             <br>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-primary btn-lg addRow">Add</button>
+                </div>
+                <div class="col-md-3">
                     <select class="form-select form-select-lg mb-3" id="category_select" onChange='handleChange()'>
                         <option value="Food">Food</option>
                         <option value="Drink">Drink</option>
                     </select>
                 </div>
                 <br>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <select class="form-select form-select-lg mb-3" id="type_select"></select>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <input type="number" class="form-control form-control-lg mb-3" id="num" placeholder="Qty" min="0">
                 </div>
             </div>
         </div>
     </div>
     <br>
-    <button type="submit" class="btn btn-secondary">Order</button>
+    <button type="submit" class="btn btn-secondary order">Order</button>
     <br>
     <br>
     <div class="result text-center"></div>
@@ -119,7 +129,7 @@
 
         $(document).ready(function () {
             var selectMenu = {};
-            $("button").click(function () {
+            $(".order").click(function () {
                 var itemName = $("#type_select option:selected").attr('label');
                 var price = Number($("#type_select option:selected").data('price'));
                 var count = Number($("#num").val());
@@ -129,8 +139,41 @@
 
                 $(".result").html(result);
             });
-        });
 
+
+            $(".addRow").click(function () {
+                var x = 1;
+                var html = '';
+                html += '<div class="row">';
+                html += '<div class="col-md-3">';
+                html += '<button type="button" class="btn btn-danger btn-lg delRow">Del</button>';
+                html += '</div>';
+                html += '<div class="col-md-3">';
+                html += '<select class="form-select form-select-lg mb-3" id="category_select" onChange="handleChange()">';
+                html += '<option value="Food">Food</option>';
+                html += '<option value="Drink">Drink</option>';
+                html += '</select>';
+                html += '</div>';
+                html += '<br>';
+                html += '<div class="col-md-3">';
+                html += '<select class="form-select form-select-lg mb-3" id="type_select"></select>';
+                html += '</div>';
+                html += '<div class="col-md-3">';
+                html += '<input type="number" class="form-control form-control-lg mb-3" id="num" placeholder="Qty" min="0">';
+                html += '</div>';
+                html += '</div>';
+
+                if (x < html.length) {
+                    x++;
+                }
+                $('.container-fluid').append(html);
+            });
+
+            $(document).on('click', '.delRow', function () {
+                $(this).closest('.row').remove();
+            });
+
+        });
     </script>
 </body>
 
