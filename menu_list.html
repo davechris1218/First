@@ -9,8 +9,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link type="text/css" rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <style>
         button[type=submit] {
@@ -34,22 +32,22 @@
         <div class="container-fluid text-center">
             <h2 style="font-size:70px; font-family:Lucida Console;">MENU</h2>
             <br>
-            <div class="row">
+            <div class="row menu-position">
                 <div class="col-md-3">
                     <button type="button" class="btn btn-primary btn-lg addRow">Add</button>
                 </div>
                 <div class="col-md-3">
-                    <select class="form-select form-select-lg mb-3" id="category_select" onChange='handleChange()'>
+                    <select class="form-select form-select-lg mb-3 category-select" onChange='handleChange(this)'>
                         <option value="Food">Food</option>
                         <option value="Drink">Drink</option>
                     </select>
                 </div>
                 <br>
                 <div class="col-md-3">
-                    <select class="form-select form-select-lg mb-3" id="type_select"></select>
+                    <select class="form-select form-select-lg mb-3 type-select"></select>
                 </div>
                 <div class="col-md-3">
-                    <input type="number" class="form-control form-control-lg mb-3" id="num" placeholder="Qty" min="0">
+                    <input type="number" class="form-control form-control-lg mb-3 qty" placeholder="Qty" min="0">
                 </div>
             </div>
         </div>
@@ -108,70 +106,72 @@
             ]
         }
 
-        function handleChange() {
-            var x = document.getElementById("category_select").value;
+        function handleChange(e) {
+            var $row = e ? $(e).closest(".menu-position") : $('.menu-position')
+            var selectedCategory = $row.find('.category-select').val()
+            var $typeSelect = $row.find('.type-select')
+            var dataOptions = data[selectedCategory]
 
-            var dataOptions = data[x]
-            var dataSelect = document.getElementById('type_select')
-            dataSelect.innerHTML = ''
+            $typeSelect.html('')
 
             dataOptions.forEach(function (option) {
                 var optionEle = document.createElement('option')
                 optionEle.value = option.id
                 optionEle.label = option.name
                 optionEle.setAttribute('data-price', option.price)
-
-                dataSelect.appendChild(optionEle)
+                $typeSelect.append(optionEle)
             })
-
         }
+
         handleChange()
 
         $(".addRow").click(function () {
-            var x = 1;
-            var html = '';
-            html += '<div class="row">';
+            var $typeSelect = $(".type-select").clone()
+            var html = '<div class="row outer menu-position">';
             html += '<div class="col-md-3">';
             html += '<button type="button" class="btn btn-danger btn-lg delRow">Del</button>';
             html += '</div>';
             html += '<div class="col-md-3">';
-            html += '<select class="form-select form-select-lg mb-3" id="category_select" onChange="handleChange()">';
+            html += '<select class="form-select form-select-lg mb-3 category-select" onChange="handleChange(this)">'; //use clone for this as well if needed same options ..
             html += '<option value="Food">Food</option>';
             html += '<option value="Drink">Drink</option>';
             html += '</select>';
             html += '</div>';
             html += '<br>';
             html += '<div class="col-md-3">';
-            html += '<select class="form-select form-select-lg mb-3" id="type_select"></select>';
+            html += '<select class="form-select form-select-lg mb-3 type-select">' + $typeSelect.html() + '</select>'; //pass same
             html += '</div>';
             html += '<div class="col-md-3">';
-            html += '<input type="number" class="form-control form-control-lg mb-3" id="num" placeholder="Qty" min="0">';
+            html += '<input type="number" class="form-control form-control-lg mb-3 qty" placeholder="Qty" min="0">';
             html += '</div>';
             html += '</div>';
 
-            if (x < html.length) {
-                x++;
-            }
             $('.container-fluid').append(html);
         });
 
         $(document).on('click', '.delRow', function () {
             $(this).closest('.row').remove();
+            $('.order').trigger('click')
         });
 
         $(document).ready(function () {
             var selectMenu = {};
-            $(".order").click(function () {
-                var itemName = $("#type_select option:selected").attr('label');
-                var price = Number($("#type_select option:selected").data('price'));
-                var count = Number($("#num").val());
-                var total = price * count;
-                selectMenu[itemName] = total
+            $('.order').click(function () {
+                selectMenu = {};
+                $('.menu-position').each(function (i) {
+                    var category = $(this).find('.category-select').val()
+                    var $selectedItem = $(this).find('.type-select :selected')
+                    var name = $selectedItem.attr('label')
+                    var price = $selectedItem.data('price')
+                    var qty = +$(this).find('.qty').val()
+                    var total = price * qty
+
+                    selectMenu[name] = total
+                })
+
                 var result = JSON.stringify(selectMenu).replace(/,/g, '<br>').replace(/\{|\}|"/g, "")
-
-                $(".result").html(result);
+                $('.result').html(result);
             });
-
         });
     </script>
 </body>
