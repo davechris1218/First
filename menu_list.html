@@ -67,6 +67,11 @@
             <tbody></tbody>
         </table>
     </div>
+    <br>
+    <div class="totalPrice text-center">
+        <h4>Total Price</h4>
+        <input type="number" class="text-center" disabled>
+    </div>
 
     <script>
         var data = {
@@ -179,9 +184,13 @@
                 })
 
                 $('.result tbody').html("");
+                var total = 0
                 $.each(selectMenu, function (index, data) {
                     $('.result tbody').append("<tr class='orders'><td>" + data.itemname + '</td><td>' + data.total + "</td></tr>");
+
+                    total += parseInt(data.total);
                 })
+                $(".totalPrice input").val(total)
             });
         });
 
