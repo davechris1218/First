@@ -60,8 +60,9 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th style="width:50%">Item name</th>
-                    <th style="width:50%">Price</th>
+                    <th style="width:30%">Qty</th>
+                    <th style="width:30%">Item name</th>
+                    <th style="width:30%">Price</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -179,14 +180,15 @@
                     var qty = Number($(this).closest(".row").find(".qty").val())
                     selectMenu[i] = {
                         "total": price * qty,
-                        "itemname": text
+                        "itemname": text,
+                        "qty": qty
                     }
                 })
 
                 $('.result tbody').html("");
                 var total = 0
                 $.each(selectMenu, function (index, data) {
-                    $('.result tbody').append("<tr class='orders'><td>" + data.itemname + '</td><td>' + data.total + "</td></tr>");
+                    $('.result tbody').append("<tr class='orders'><td>" + data.qty + '</td><td>' + data.itemname + '</td><td>' + data.total + "</td></tr>");
 
                     total += parseInt(data.total);
                 })
