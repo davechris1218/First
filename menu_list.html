@@ -46,14 +46,15 @@
                 <div class="col-md-3">
                     <select class="form-select form-select-lg mb-3 type-select type"></select>
                 </div>
-                <div class="col-md-3">
-                    <input type="number" class="form-control form-control-lg mb-3 qty" placeholder="Qty" min="0">
+                <div class="col-md-3" style="overflow: hidden;">
+                    <h2 style="float: left;">Qty :</h2>
+                    <input type="number" class="form-control form-control-lg mb-3 qty" style="float: right; width: 180px;" value="1" min="1">
                 </div>
             </div>
         </div>
     </div>
     <br>
-    <button type="submit" class="btn btn-secondary order">Order</button>
+    <button type="submit" class="btn btn-secondary order" onclick="myFunction()">Order</button>
     <br>
     <br>
     <div class="result text-center">
@@ -71,7 +72,7 @@
     <br>
     <div class="totalPrice text-center">
         <h4>Total Price</h4>
-        <input type="number" class="text-center" disabled>
+        <input type="text" class="text-center" value="0" disabled>
     </div>
 
     <script>
@@ -157,8 +158,9 @@
             html += '<div class="col-md-3">';
             html += '<select class="form-select form-select-lg mb-3 type-select type">' + $typeSelect.html() + '</select>';
             html += '</div>';
-            html += '<div class="col-md-3">';
-            html += '<input type="number" class="form-control form-control-lg mb-3 qty" placeholder="Qty" min="0">';
+            html += '<div class="col-md-3" style="overflow: hidden;">';
+            html += '<h2 style="float: left;">Qty :</h2>'
+            html += '<input type="number" class="form-control form-control-lg mb-3 qty" style="float: right; width: 180px;" value="1" min="1">';
             html += '</div>';
             html += '</div>';
 
@@ -174,26 +176,34 @@
             $('.order').click(function () {
                 var selectMenu = {};
                 $("select.type").each(function (i) {
-                    selectMenu[i] = {}
                     var text = $(this).find("option:selected").attr('label');
                     var price = Number($(this).find("option:selected").data('price'));
                     var qty = Number($(this).closest(".row").find(".qty").val())
-                    selectMenu[i] = {
-                        "total": price * qty,
-                        "itemname": text,
-                        "qty": qty
+                    if (text in selectMenu) {
+                        selectMenu[text][0] += qty;
+                        selectMenu[text][1] += price;
+                        selectMenu[text][2] += qty * price;
+                    } else {
+                        if (qty > 0) selectMenu[text] = [qty, price, qty * price];
                     }
                 })
 
                 $('.result tbody').html("");
                 var total = 0
-                $.each(selectMenu, function (index, data) {
-                    $('.result tbody').append("<tr class='orders'><td>" + data.qty + '</td><td>' + data.itemname + '</td><td>' + data.total + "</td></tr>");
+                $.each(selectMenu, function (key, value) {
+                    $('.result tbody').append("<tr class='orders'><td>" + value[0] + '</td><td>' + key + '</td><td>' + value[2] + "</td></tr>");
 
-                    total += parseInt(data.total);
-                })
+                    total += parseInt(value[2]);
+                });
                 $(".totalPrice input").val(total)
             });
+        });
+
+        $(".order").click(function () {
+            if ($(".qty").val() == 0)
+                alert('Please fill Qty field')
+            else
+                return true;
         });
 
     </script>
