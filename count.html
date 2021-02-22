@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+    function myfun(){
+    $(document).ready(function(){
+
+        $("#select").click(
+        function(){
+        var data=$("#select").val();
+            $("#disp").val(data);
+                            });
+    });
+    }
+    </script>
+    </head>
+    <body>
+    <p>id <input type="text" name="user" id="disp"></p>
+    <select id="select" onclick="myfun()">
+    <option name="1"value="one">1</option>
+    <option name="2"value="two">2</option>
+    <option name="3"value="three"></option>
+    </select>
+    </body>
+    </html>
